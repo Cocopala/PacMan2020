@@ -39,6 +39,7 @@
      <Compile Include="Assets\Scripts\GhostAI.cs" />
      <Compile Include="Assets\Scripts\PM_Movement.cs" />
      <Compile Include="Assets\Scripts\Pacdot.cs" />
+     <Compile Include="Assets\Scripts\RandomPath.cs" />
      <Compile Include="Assets\Scripts\SelfAnim.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.12f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
