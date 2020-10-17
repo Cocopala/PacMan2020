@@ -36,8 +36,10 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\ButtonMgr.cs" />
      <Compile Include="Assets\Scripts\GameManagement.cs" />
      <Compile Include="Assets\Scripts\GhostAI.cs" />
+     <Compile Include="Assets\Scripts\LevelGenerator.cs" />
      <Compile Include="Assets\Scripts\PM_Movement.cs" />
      <Compile Include="Assets\Scripts\Pacdot.cs" />
      <Compile Include="Assets\Scripts\RandomPath.cs" />
