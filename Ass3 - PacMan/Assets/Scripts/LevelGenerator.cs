@@ -12,31 +12,27 @@ public class LevelGenerator : MonoBehaviour
     public GameObject standardPellet;
     public GameObject powerPellet;
     public GameObject tJunction;
-    private int[,] quadrant =
-  {
- {1,2,2,2,2,2,2,2,2,2,2,2,2,7},
- {2,5,5,5,5,5,5,5,5,5,5,5,5,4},
- {2,5,3,4,4,3,5,3,4,4,4,3,5,4},
- {2,6,4,0,0,4,5,4,0,0,0,4,5,4},
- {2,5,3,4,4,3,5,3,4,4,4,3,5,3},
- {2,5,5,5,5,5,5,5,5,5,5,5,5,5},
- {2,5,3,4,4,3,5,3,3,5,3,4,4,4},
- {2,5,3,4,4,3,5,4,4,5,3,4,4,3},
- {2,5,5,5,5,5,5,4,4,5,5,5,5,4},
- {1,2,2,2,2,1,5,4,3,4,4,3,0,4},
- {0,0,0,0,0,2,5,4,3,4,4,3,0,3},
- {0,0,0,0,0,2,5,4,4,0,0,0,0,0},
- {0,0,0,0,0,2,5,4,4,0,3,4,4,0},
- {2,2,2,2,2,1,5,3,3,0,4,0,0,0},
- {0,0,0,0,0,0,5,0,0,0,4,0,0,0},
- };
-    private int[,] levelMap;
+    public GameObject whosYourDaddy;
+
+    Dictionary<int, GameObject> valueSpriteMap = new Dictionary<int, GameObject>();
+
+    private int[,] quadrant = GameStatic.quadrant;
+    private int[,] rotation;
+    public int[,] levelMap = GameStatic.levelMap;
 
     // Start is called before the first frame update
     void Start()
     {
-        initMartix(quadrant);
 
+        valueSpriteMap.Add(0, empty);
+        valueSpriteMap.Add(1, outsideCorner);
+        valueSpriteMap.Add(2, outsideWall);
+        valueSpriteMap.Add(3, insideCorner);
+        valueSpriteMap.Add(4, insideWall);
+        valueSpriteMap.Add(5, standardPellet);
+        valueSpriteMap.Add(6, powerPellet);
+        valueSpriteMap.Add(7, tJunction);
+        initMartix(quadrant);
     }
 
     // Update is called once per frame
@@ -45,78 +41,113 @@ public class LevelGenerator : MonoBehaviour
         
     }
 
-
     private void initMartix(int[,] arr2d)
     {
-        int quadrant_r = arr2d.GetLength(0);
-        int quadrant_c = arr2d.GetLength(1);
-        int levelMap_r = quadrant_r * 2 - 1;
-        int levelMap_c = quadrant_c * 2;
-        levelMap = new int[levelMap_r,levelMap_c];
-        for (int r=0; r<levelMap_r; r++)
+        for (int r = 0; r < levelMap.GetLength(0); r++)
         {
-            for (int c=0; c<levelMap_c; c++)
+            for (int c = 0; c < levelMap.GetLength(1); c++)
             {
-                if (r <= quadrant_r && c <= quadrant_c )
-                {
-                    levelMap[r,c] = arr2d[r,c];
-                    initGrid(levelMap[r, c], r, c);
-                    
-                }
-                if (r <= quadrant_r && c >= quadrant_c)
-                {
-                    levelMap[r,c] = arr2d[r, quadrant_c - c];
-                    initGrid(levelMap[r, c], r, c);
-                }
-                if (r > quadrant_r && c <= quadrant_c)
-                {
-                    levelMap[r,c] = arr2d[r - quadrant_r - 1, c];
-                    initGrid(levelMap[r, c], r, c);
-                }
-                if (r > quadrant_r && c > quadrant_c)
-                {
-                    levelMap[r, c] = arr2d[r - quadrant_r - 1, quadrant_c - c];
-                    initGrid(levelMap[r, c], r, c);
-                }
-
-            }
+                Vector3 rotation = calcRotation(levelMap[r, c], r, c); 
+                initGrid(levelMap[r, c], r, c, rotation);
+            } 
         }
     }
 
-    public void initGrid(int value,int x, int y)
+    public void initGrid(int value,int x, int y,Vector3 rotation)
     {
-        if (value == 0)
-        {
-            Instantiate(empty, new Vector2(x, y), Quaternion.identity);
+        GameObject piece = Instantiate(valueSpriteMap[value], new Vector2(y, -x), Quaternion.Euler(rotation));
+        if (whosYourDaddy)
+            piece.transform.SetParent(whosYourDaddy.transform, false);
+
+        GameStatic.gameObjectsMap[x, y] = piece;
+    }
+
+    public Vector3 calcRotation(int value, int x, int y)
+    {
+        int rotateZ = 0;
+        int up = 0, down = 0, left = 0, right = 0;
+        if (x > 0) up = levelMap[x - 1, y];
+        if (x < levelMap.GetLength(0) - 2) down = levelMap[x + 1, y];
+        if (y > 0) left = levelMap[x, y - 1];
+        if (y < levelMap.GetLength(1) - 2) right = levelMap[x, y + 1];
+        switch (value) {
+            case 1:
+                if (right == 2 && down == 2) rotateZ = 0;
+                if (left == 2 && down == 2) rotateZ = 270;
+                if (up == 2 && left == 2) rotateZ = 180;
+                if (up == 2 && right == 2) rotateZ = 90;
+
+                break;
+            case 2:
+                if (right == 2 || left == 2 ) rotateZ = 90;
+                break;
+            case 3:
+                //if (right == 4 && down == 4 || (right == 3 && down == 3)) rotateZ = 0;
+                //if (left == 4 && down == 4 || (left == 3 && down == 3)) rotateZ = 270;
+                //if (up == 4 && left == 4 || (up == 3 && left == 3)) rotateZ = 180;
+                //if (up == 4 && right == 4 || (up == 3 && right == 3)) rotateZ = 90;
+                if ((right != 0 && right != 5 && right != 6) && (down != 0 && down != 5 && down != 6)) rotateZ = 0;
+                if ((left != 0 && left != 5 && left != 6) && (down != 0 && down != 5 && down != 6)) rotateZ = 270;
+                if ((up != 0 && up != 5 && up != 6) && (left != 0 && left != 5 && left != 6)) rotateZ = 180;
+                if ((up != 0 && up != 5 && up != 6) && (right != 0 && right != 5 && right != 6)) rotateZ = 90;
+                break;
+            case 4:
+                if ((left != 0 && left != 5 && left != 6) && (right != 0 && right != 5 && right != 6)) rotateZ = 90;
+
+                    break;
+            case 7:
+                break;
+            default:
+                break;
+
         }
-        if (value == 1)
-        {
-            Instantiate(outsideCorner, new Vector2(x, y), Quaternion.identity);
+        // special cases
+        int rotateY = 0;
+        if (x == 0 && y == 14)
+            rotateY = 180;
+        if (x == 7 && y == 13)
+            rotateZ = 270;
+        if (x == 7 && y == 14)
+            rotateZ = 0;
+        if (x == 10 && y == 8)
+            rotateZ = 0;
+        if (x == 9 && y == 19)
+            rotateZ = 180;
+        if (x == 10 && y == 19)
+            rotateZ = 270;
+        if (x == 12 && y == 12)
+            rotateZ = 90;
+        if (x == 21 && y == 13)
+            rotateZ = 180;
+        if (x == 19 && y == 8)
+            rotateZ = 0;
+        if (x == 18 && y == 19)
+            rotateZ = 180;
+        if (x == 19 && y == 19)
+            rotateZ = 270;
+
+            if (x == 12 && y == 12 ||
+            x == 12 && y == 15
+            || x == 16 && y == 12
+            || x == 16 && y == 15)
+            rotateZ = 90;
+
+        if (x == 28 && y == 13) {
+            rotateZ = 180;
+            rotateY = 180;
         }
-        if (value == 2)
+        if (x == 28 && y == 14)
         {
-            Instantiate(outsideWall, new Vector2(x, y), Quaternion.identity);
-        }
-        if (value == 3)
-        {
-            Instantiate(insideCorner, new Vector2(x, y), Quaternion.identity);
-        }
-        if (value == 4)
-        {
-            Instantiate(insideWall, new Vector2(x, y), Quaternion.identity);
-        }
-        if (value == 5)
-        {
-            Instantiate(standardPellet, new Vector2(x, y), Quaternion.identity);
-        }
-        if (value == 6)
-        {
-            Instantiate(powerPellet, new Vector2(x, y), Quaternion.identity);
-        }
-        if (value == 7)
-        {
-            Instantiate(tJunction, new Vector2(x, y), Quaternion.identity);
+            rotateZ = 180;
         }
 
+        Vector3 rotation = new Vector3(0, rotateY, rotateZ);
+        return rotation;
+    }
+
+
+    public int[,] getLevelMap()
+    {
+        return levelMap;
     }
 }

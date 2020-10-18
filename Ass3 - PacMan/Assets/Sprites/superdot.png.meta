@@ -8,6 +8,12 @@ TextureImporter:
   - first:
       213: 1991411826585013752
     second: superdot_1
+  - first:
+      213: 4655010100076869747
+    second: superdot_0
+  - first:
+      213: 8830830007104703712
+    second: superdot_1
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -107,10 +113,10 @@ TextureImporter:
       name: superdot_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 3
-        width: 11
-        height: 11
+        x: 0
+        y: 0
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a60ecb82bbd73e0c0800000000000000
-      internalID: -4547652955918245782
+      spriteID: 378ffe0d50be99040800000000000000
+      internalID: 4655010100076869747
       vertices: []
       indices: 
       edges: []
@@ -128,10 +134,10 @@ TextureImporter:
       name: superdot_1
       rect:
         serializedVersion: 2
-        x: 18
-        y: 3
-        width: 11
-        height: 11
+        x: 16
+        y: 0
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -139,8 +145,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8fd8c1d518ae2ab10800000000000000
-      internalID: 1991411826585013752
+      spriteID: 0ec065d8a196d8a70800000000000000
+      internalID: 8830830007104703712
       vertices: []
       indices: 
       edges: []
