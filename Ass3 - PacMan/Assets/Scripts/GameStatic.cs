@@ -22,6 +22,7 @@ public class GameStatic : MonoBehaviour
  {2,2,2,2,2,1,5,3,3,0,4,0,0,0},
  {0,0,0,0,0,0,5,0,0,0,4,0,0,0},
  };
+    
 
     public static int[,] levelMap = GameStatic.initLevelMap(quadrant);
     public static GameObject[,] gameObjectsMap =  new GameObject[quadrant.GetLength(0) * 2 - 1, quadrant.GetLength(1) * 2];
@@ -48,4 +49,6 @@ public class GameStatic : MonoBehaviour
 
         return levelMap;
     }
+
+    public static int score = 0;
 }

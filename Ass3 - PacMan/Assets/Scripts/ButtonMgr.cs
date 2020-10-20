@@ -5,13 +5,12 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class ButtonMgr : MonoBehaviour
 {
-    public AudioClip clickAudio;
-    public AudioSource audioSource;
+    private SoundMgr soundMgr;
     private Button button;
 
     void Start()
     {
-        audioSource = GameObject.Find("Audio").GetComponent<AudioSource>();
+        soundMgr = FindObjectOfType<SoundMgr>();
     }
 
     // Update is called once per frame
@@ -23,8 +22,7 @@ public class ButtonMgr : MonoBehaviour
     public void changeScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
-        audioSource.PlayOneShot(clickAudio);
+        soundMgr.PlayOnce("click");
     }
-
 
 }

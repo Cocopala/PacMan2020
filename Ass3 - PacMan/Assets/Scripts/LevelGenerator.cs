@@ -58,7 +58,7 @@ public class LevelGenerator : MonoBehaviour
         GameObject piece = Instantiate(valueSpriteMap[value], new Vector2(y, -x), Quaternion.Euler(rotation));
         if (whosYourDaddy)
             piece.transform.SetParent(whosYourDaddy.transform, false);
-
+        piece.name = valueSpriteMap[value].name + "_" + y + '_' + -x;
         GameStatic.gameObjectsMap[x, y] = piece;
     }
 

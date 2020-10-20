@@ -37,15 +37,21 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\ButtonMgr.cs" />
+     <Compile Include="Assets\Scripts\CherryController.cs" />
      <Compile Include="Assets\Scripts\GameManagement.cs" />
+     <Compile Include="Assets\Scripts\GameStateMachine.cs" />
      <Compile Include="Assets\Scripts\GameStatic.cs" />
+     <Compile Include="Assets\Scripts\GameTimerManager.cs" />
      <Compile Include="Assets\Scripts\GhostAI.cs" />
+     <Compile Include="Assets\Scripts\GhostController.cs" />
      <Compile Include="Assets\Scripts\LevelGenerator.cs" />
      <Compile Include="Assets\Scripts\PM_Movement.cs" />
      <Compile Include="Assets\Scripts\PacStudentController.cs" />
      <Compile Include="Assets\Scripts\Pacdot.cs" />
      <Compile Include="Assets\Scripts\RandomPath.cs" />
      <Compile Include="Assets\Scripts\SelfAnim.cs" />
+     <Compile Include="Assets\Scripts\Sound.cs" />
+     <Compile Include="Assets\Scripts\SoundMgr.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.3f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

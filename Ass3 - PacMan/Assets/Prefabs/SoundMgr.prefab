@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1841363260910763630
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1841363260910763624}
+  - component: {fileID: 1841363260910763625}
+  m_Layer: 0
+  m_Name: SoundMgr
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1841363260910763624
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841363260910763630}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.042275, y: 0.29656014, z: 0.48723516}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1841363260910763625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841363260910763630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67d1f995d69004a18b94716bfd821c62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Normal
+    clip: {fileID: 8300000, guid: 2a8641f0460d862428a384fe272c6e96, type: 3}
+    volume: 0.85
+    pitch: 1.25
+    source: {fileID: 0}
+    loop: 1
+  - name: Scared
+    clip: {fileID: 8300000, guid: 8e0fdce4446d27d4099235fa4c788d63, type: 3}
+    volume: 1
+    pitch: 1.25
+    source: {fileID: 0}
+    loop: 1
+  - name: Dead
+    clip: {fileID: 8300000, guid: 06b7299450bbb914c861df7b2f22d155, type: 3}
+    volume: 0
+    pitch: 1.8
+    source: {fileID: 0}
+    loop: 1
+  - name: Intro
+    clip: {fileID: 8300000, guid: c93b72966d5d70947a6211ea7a5dbfca, type: 3}
+    volume: 0.72
+    pitch: 1.74
+    source: {fileID: 0}
+    loop: 1
+  - name: dotEatenBonus
+    clip: {fileID: 8300000, guid: 9fb64883163ced445b673c372b595b5b, type: 3}
+    volume: 1
+    pitch: 1.63
+    source: {fileID: 0}
+    loop: 0
+  - name: hitWall
+    clip: {fileID: 8300000, guid: d6df37cc9fc342a48aaaa78dba2e4153, type: 3}
+    volume: 0.81
+    pitch: 1.36
+    source: {fileID: 0}
+    loop: 0
+  - name: dotEaten
+    clip: {fileID: 8300000, guid: 134b454692b62a54aa562eae6334d1c9, type: 3}
+    volume: 0.89
+    pitch: 1.52
+    source: {fileID: 0}
+    loop: 0
+  - name: dotMoving
+    clip: {fileID: 8300000, guid: 5ce02900e035ece4e860370804e92ab8, type: 3}
+    volume: 0.89
+    pitch: 1.52
+    source: {fileID: 0}
+    loop: 0
+  - name: click
+    clip: {fileID: 8300000, guid: 5ce02900e035ece4e860370804e92ab8, type: 3}
+    volume: 0.89
+    pitch: 1.52
+    source: {fileID: 0}
+    loop: 0
+  audioSource: {fileID: 0}
