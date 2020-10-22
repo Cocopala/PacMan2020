@@ -44,6 +44,7 @@
      <Compile Include="Assets\Scripts\GameTimerManager.cs" />
      <Compile Include="Assets\Scripts\GhostAI.cs" />
      <Compile Include="Assets\Scripts\GhostController.cs" />
+     <Compile Include="Assets\Scripts\HighScores.cs" />
      <Compile Include="Assets\Scripts\LevelGenerator.cs" />
      <Compile Include="Assets\Scripts\PM_Movement.cs" />
      <Compile Include="Assets\Scripts\PacStudentController.cs" />

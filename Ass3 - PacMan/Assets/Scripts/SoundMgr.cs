@@ -25,7 +25,7 @@ public class SoundMgr : MonoBehaviour
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
         
-        Debug.Log("play music:" + s.name);
+        //Debug.Log("play music:" + s.name);
         if (s != null && s.source != null)
             s.source.Play();
     }
@@ -34,7 +34,7 @@ public class SoundMgr : MonoBehaviour
     {
 
         Sound s = Array.Find(sounds, sound => sound.name == soundName);
-        Debug.Log("play music once:" + s.name);
+        //Debug.Log("play music once:" + s.name);
         audioSource.PlayOneShot(s.source.clip);
     }
 
@@ -48,7 +48,7 @@ public class SoundMgr : MonoBehaviour
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
 
-        Debug.Log("stop play music:" + s.name);
+        //Debug.Log("stop play music:" + s.name);
         if (s != null && s.source != null)
             s.source.Stop();
 

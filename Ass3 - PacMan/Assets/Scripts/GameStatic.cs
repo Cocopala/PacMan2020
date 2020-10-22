@@ -32,8 +32,8 @@ public class GameStatic : MonoBehaviour
         int quadrant_c = arr2d.GetLength(1);
         int levelMap_r = quadrant_r * 2 - 1;    //29
         int levelMap_c = quadrant_c * 2;        //28
-        Debug.Log(levelMap_c);
-        Debug.Log(levelMap_r);
+        //Debug.Log(levelMap_c);
+        //Debug.Log(levelMap_r);
         int[,] levelMap = new int[levelMap_r, levelMap_c];
         for (int r = 0; r < levelMap_r; r++)
         {

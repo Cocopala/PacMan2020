@@ -21,7 +21,8 @@ public class ButtonMgr : MonoBehaviour
 
     public void changeScene(string sceneName)
     {
-        SceneManager.LoadScene(sceneName);
+        //change mode to single
+        SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
         soundMgr.PlayOnce("click");
     }
 

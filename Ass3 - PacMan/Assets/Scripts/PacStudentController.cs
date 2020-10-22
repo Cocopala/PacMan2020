@@ -39,29 +39,32 @@ public class PacStudentController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetLastInput();
-
-        // 1. if pacman is still walking from one node to next, then continue walking towards the toNode
-        if (walkingState == WalkingState.walking)
+        if (GameManagement.Instance.isGameStart)
         {
-            Move();
-            hitWallHappened = false;
-            return;
-        }
+            GetLastInput();
 
-        // 2. if packman is arrived at next node or stopped
-        // update the  toNode, according to neighbor node, current walking direction, last input
-        
-        UpdateToNode();
+            // 1. if pacman is still walking from one node to next, then continue walking towards the toNode
+            if (walkingState == WalkingState.walking)
+            {
+                Move();
+                hitWallHappened = false;
+                return;
+            }
 
-        // 2.1 if pacman is stopped and nowhere to go ,just keep it there, until toNode and fromNode is different
-        if (fromNode == toNode)
-        {
-            walkingState = WalkingState.stopped;
-        }
-        else
-        {
-            walkingState = WalkingState.walking;
+            // 2. if packman is arrived at next node or stopped
+            // update the  toNode, according to neighbor node, current walking direction, last input
+
+            UpdateToNode();
+
+            // 2.1 if pacman is stopped and nowhere to go ,just keep it there, until toNode and fromNode is different
+            if (fromNode == toNode)
+            {
+                walkingState = WalkingState.stopped;
+            }
+            else
+            {
+                walkingState = WalkingState.walking;
+            }
         }
 
     }
@@ -114,8 +117,9 @@ public class PacStudentController : MonoBehaviour
 
         int x = -yy, y = xx;
         GameObject pellet = GameStatic.gameObjectsMap[x, y];
-        if(pellet != null)
-        {   if(pellet.active)
+        if (pellet != null)
+        {
+            if (pellet.active)
             {
                 GameStatic.score += 10;
                 scoreText.text = "" + GameStatic.score;
@@ -123,11 +127,13 @@ public class PacStudentController : MonoBehaviour
                 if (isPower)
                 {
                     gameStateMachine.changeToScaredState();
-                } else
+                }
+                else
                 {
 
                 }
-            } else
+            }
+            else
             {
                 soundMgr.PlayOnce("dotMoving");
             }
@@ -153,7 +159,7 @@ public class PacStudentController : MonoBehaviour
 
             return;
         }
-        if (y==27 && x == 14 && currentWalkingDirection == Vector2.right)
+        if (y == 27 && x == 14 && currentWalkingDirection == Vector2.right)
         {
             fromNode = new Vector2Int(0, -14);
             toNode = new Vector2Int(1, -14);
@@ -187,14 +193,14 @@ public class PacStudentController : MonoBehaviour
         {
             if (hitWallHappened == false)
             {
-                Debug.Log("hit a wall!");
+                //Debug.Log("hit a wall!");
                 hitWallEvent();
             }
             hitWallHappened = true;
             walkingState = WalkingState.stopped;
         }
 
-        
+
 
         /** 
         Debug.Log("======= UpdateToNode=====");
@@ -218,10 +224,11 @@ public class PacStudentController : MonoBehaviour
 
     void changePackmanFace(Vector2 direction)
     {
-        if(direction == Vector2.left)
+        if (direction == Vector2.left)
         {
-            pacStudent.transform.localRotation = Quaternion.Euler(new Vector3(0,180f,0));
-        } else if (direction == Vector2.right)
+            pacStudent.transform.localRotation = Quaternion.Euler(new Vector3(0, 180f, 0));
+        }
+        else if (direction == Vector2.right)
         {
             pacStudent.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
         }
